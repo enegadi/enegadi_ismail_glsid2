@@ -82,12 +82,12 @@ const Home: React.FC = () => {
       ) : (
         <>
           <View style={styles.row}>
-            <Text>Fortune du joueur: </Text>
-            <Text>{playerMoney}</Text>
+            <Text style={styles.labelText}>Player's Money: </Text>
+            <Text style={styles.valueText}>{playerMoney}</Text>
           </View>
           <View style={styles.row}>
-            <Text>Fortune du casino: </Text>
-            <Text>{casinoMoney}</Text>
+            <Text style={styles.labelText}>Casino's Money: </Text>
+            <Text style={styles.valueText}>{casinoMoney}</Text>
           </View>
           <Animated.Image
             source={diceImages[dice]}
@@ -96,8 +96,12 @@ const Home: React.FC = () => {
               { transform: [{ rotate: rotationInterpolation }] },
             ]}
           />
-          <Button title="Lancer les dés" onPress={rollDice} />
-          <Button title="Quitter l'application" onPress={exitApp} />
+          <View style={styles.buttonContainer}>
+            <Button title="Roll Dice" onPress={rollDice} color="#1E90FF" />
+          </View>
+          <View style={styles.buttonContainer}>
+            <Button title="Exit App" onPress={exitApp} color="#FF4500" />
+          </View>
         </>
       )}
     </View>
@@ -106,24 +110,40 @@ const Home: React.FC = () => {
 
 const styles = StyleSheet.create({
   container: {
-    padding: 20,
-    alignItems: "center",
     flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "#F5F5F5",
   },
   row: {
     flexDirection: "row",
     marginBottom: 20,
+    alignItems: "center",
+  },
+  labelText: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginRight: 10,
+  },
+  valueText: {
+    fontSize: 18,
   },
   diceImage: {
     width: 100,
     height: 100,
     marginBottom: 20,
   },
+  buttonContainer: {
+    marginTop: 10,
+    width: '80%',
+  },
   winnerText: {
     fontSize: 30,
     fontWeight: "bold",
     textAlign: "center",
     margin: 20,
+    color: "#32CD32",
   },
 });
 

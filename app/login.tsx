@@ -5,16 +5,16 @@ import {
   TouchableWithoutFeedback,
   TextInput,
   Keyboard,
+  TouchableOpacity,
 } from "react-native";
 import React, { useState } from "react";
-import styles from "./styles";
-import { Button } from "react-native-elements";
 import { Link } from "expo-router";
+import styles from "./styles";
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [isloading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const onLoginPress = () => {
     console.log("Login button pressed");
@@ -39,12 +39,13 @@ export default function Login() {
               onChangeText={setPassword}
               value={password}
             />
-            <Link href={"/home"}>
-              <Button
-                buttonStyle={styles.loginButton}
-                onPress={() => onLoginPress()}
-                title="Login"
-              />
+            <Link href={"/home"} asChild>
+              <TouchableOpacity
+                style={styles.loginButton}
+                onPress={onLoginPress}
+              >
+                <Text style={styles.loginButtonText}>Login</Text>
+              </TouchableOpacity>
             </Link>
           </View>
         </View>
